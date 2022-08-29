@@ -44,7 +44,8 @@ $grey-primary: hsl(0, 0%, 50%);
 }
 
 .add-project-modal,
-.add-todo-modal {
+.add-todo-modal,
+.todo-modal {
   @include flex(column, center, center);
 
   width: 200px;
@@ -70,6 +71,10 @@ $grey-primary: hsl(0, 0%, 50%);
       transition: 0.3s ease-in-out;
     }
   }
+}
+
+.todo-modal {
+  @include flex($content: center, $items: flex-start);
 }
 
 .add-project-modal-title {
@@ -148,7 +153,9 @@ $grey-primary: hsl(0, 0%, 50%);
 }
 
 .project-title,
-.add-project-modal-title {
+.add-project-modal-title,
+.add-todo-modal-title,
+.todo-modal-title {
   @include flex($content: center, $items: center);
 
   width: 100%;

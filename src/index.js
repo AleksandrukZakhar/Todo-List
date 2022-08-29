@@ -50,6 +50,25 @@ const Header = () => {
   return header;
 };
 
+const createTodoModal = (title, description) => {
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+  document.body.appendChild(modal);
+
+  const todoModal = document.createElement("div");
+  todoModal.classList.add("todo-modal");
+  modal.appendChild(todoModal);
+
+  const todoModalTitle = document.createElement("div");
+  todoModalTitle.textContent = title;
+  todoModalTitle.classList.add("todo-modal-title");
+  todoModal.appendChild(todoModalTitle);
+
+  const todoModalDescription = document.createElement("div");
+  todoModalDescription.textContent = description;
+  todoModal.appendChild(todoModalDescription);
+};
+
 const createAddTodoModal = (project, projectEl) => {
   const modal = document.createElement("div");
   modal.classList.add("modal");
@@ -61,7 +80,7 @@ const createAddTodoModal = (project, projectEl) => {
 
   const addTodoModalTitle = document.createElement("div");
   addTodoModalTitle.textContent = "Add Todo";
-  addTodoModalTitle.classList.add("add-project-modal-title");
+  addTodoModalTitle.classList.add("add-todo-modal-title");
   addTodoModal.appendChild(addTodoModalTitle);
 
   const input = document.createElement("input");
@@ -87,6 +106,12 @@ const createAddTodoModal = (project, projectEl) => {
 
     const todoEl = document.createElement("div");
     todoEl.classList.add("todo");
+    todoEl.addEventListener("click", () =>
+      createTodoModal(
+        project.todos[project.todos.length - 1].title,
+        project.todos[project.todos.length - 1].description
+      )
+    );
     projectEl.appendChild(todoEl);
 
     const todoTitle = document.createElement("p");
