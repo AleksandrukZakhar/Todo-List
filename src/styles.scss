@@ -35,11 +35,45 @@ $grey-primary: hsl(0, 0%, 50%);
 }
 
 .modal {
+  @include flex($content: center, $items: center);
   width: 100vw;
   height: 100vh;
   position: absolute;
   z-index: 999;
-  backdrop-filter: blur(5px);
+  background-color: hsl(0, 0%, 100%, 0.4%);
+}
+
+.add-project-modal,
+.add-todo-modal {
+  @include flex(column, center, center);
+
+  width: 200px;
+  height: 200px;
+  gap: 2rem;
+  border: 1px solid $grey-primary;
+
+  input {
+    text-align: center;
+  }
+
+  button {
+    margin-bottom: auto;
+    width: 8rem;
+    gap: 1rem;
+    background-color: $black-primary;
+    color: $white-primary;
+    border: 0;
+    border-radius: 10px;
+
+    &:hover {
+      transform: scale(1.2);
+      transition: 0.3s ease-in-out;
+    }
+  }
+}
+
+.add-project-modal-title {
+  margin-bottom: auto;
 }
 
 .add-project-container,
@@ -61,8 +95,8 @@ $grey-primary: hsl(0, 0%, 50%);
   border-radius: 10px;
 
   &:hover {
-    transform: scale(1.2);
     transition: 0.3s ease-in-out;
+    transform: scale(1.1);
   }
 
   img {
@@ -73,6 +107,14 @@ $grey-primary: hsl(0, 0%, 50%);
 
 .add-project-container {
   margin: 2rem 0;
+}
+
+.add-todo-modal {
+  height: 250px;
+
+  textarea {
+    text-align: center;
+  }
 }
 
 .projects-container {
@@ -97,15 +139,16 @@ $grey-primary: hsl(0, 0%, 50%);
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
+    background-color: hsl(0, 0%, 66%);
+    outline: 1px solid hsl(210, 13%, 50%);
   }
 
   border: 1px solid $grey-primary;
   border-radius: 5px;
 }
 
-.project-title {
+.project-title,
+.add-project-modal-title {
   @include flex($content: center, $items: center);
 
   width: 100%;
@@ -139,4 +182,8 @@ $grey-primary: hsl(0, 0%, 50%);
       transition: 0.3s ease-in-out;
     }
   }
+}
+
+.add-todo {
+  margin-top: 10px;
 }
