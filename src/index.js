@@ -64,6 +64,17 @@ const createTodoModal = (title, description) => {
   todoModalTitle.classList.add("todo-modal-title");
   todoModal.appendChild(todoModalTitle);
 
+  const cross = new Image();
+  cross.classList.add("cross");
+  cross.src = Cross;
+  cross.alt = cross;
+
+  cross.addEventListener("click", () => {
+    document.body.removeChild(modal);
+  });
+
+  todoModalTitle.appendChild(cross);
+
   const todoModalDescription = document.createElement("div");
   todoModalDescription.textContent = description;
   todoModal.appendChild(todoModalDescription);
@@ -106,21 +117,28 @@ const createAddTodoModal = (project, projectEl) => {
 
     const todoEl = document.createElement("div");
     todoEl.classList.add("todo");
-    todoEl.addEventListener("click", () =>
-      createTodoModal(
-        project.todos[project.todos.length - 1].title,
-        project.todos[project.todos.length - 1].description
-      )
-    );
     projectEl.appendChild(todoEl);
 
     const todoTitle = document.createElement("p");
     todoTitle.textContent = project.todos[project.todos.length - 1].title;
     todoTitle.classList.add("todo-title");
+
+    todoTitle.addEventListener("click", () =>
+      createTodoModal(
+        project.todos[project.todos.length - 1].title,
+        project.todos[project.todos.length - 1].description
+      )
+    );
+
     todoEl.appendChild(todoTitle);
 
     const date = document.createElement("input");
     date.type = "date";
+
+    date.addEventListener("onchange", () => {
+      console.log(date.value);
+    });
+
     todoEl.appendChild(date);
 
     const cross = new Image();
